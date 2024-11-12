@@ -204,3 +204,70 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+
+// Register Custom Post Type: Projects
+function register_projects_post_type() {
+    $args = array(
+        'labels' => array(
+            'name'                  => 'Projects',
+            'singular_name'         => 'Project',
+            'menu_name'             => 'Projects',
+            'name_admin_bar'        => 'Project',
+            'add_new'               => 'Add New',
+            'add_new_item'          => 'Add New Project',
+            'new_item'              => 'New Project',
+            'edit_item'             => 'Edit Project',
+            'view_item'             => 'View Project',
+            'all_items'             => 'All Projects',
+            'search_items'          => 'Search Projects',
+            'not_found'             => 'No projects found',
+            'not_found_in_trash'    => 'No projects found in Trash',
+            'featured_image'        => 'Project Image',
+            'set_featured_image'    => 'Set project image',
+            'remove_featured_image' => 'Remove project image',
+            'use_featured_image'    => 'Use as project image',
+            'archives'              => 'Project Archives',
+            'insert_into_item'      => 'Insert into project',
+            'uploaded_to_this_item' => 'Uploaded to this project',
+            'items_list'            => 'Projects list',
+            'items_list_navigation' => 'Projects list navigation',
+        ),
+        'public'              => true,
+        'has_archive'         => true,
+        'show_in_rest'        => true, // Enable for Gutenberg
+        'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+        'taxonomies'          => array( 'project_type' ), // Associate taxonomy
+        'rewrite'             => array( 'slug' => 'projects' ),
+        'show_in_menu'        => true,
+        'show_in_admin_bar'   => true,
+        'menu_position'       => 5,
+        'menu_icon'           => 'dashicons-portfolio',
+    );
+    register_post_type( 'project', $args );
+}
+add_action( 'init', 'register_projects_post_type' );
+
+// Register Custom Taxonomy: Project Type
+function register_project_type_taxonomy() {
+    $args = array(
+        'labels' => array(
+            'name'              => 'Project Types',
+            'singular_name'     => 'Project Type',
+            'search_items'      => 'Search Project Types',
+            'all_items'         => 'All Project Types',
+            'parent_item'       => 'Parent Project Type',
+            'parent_item_colon' => 'Parent Project Type:',
+            'edit_item'         => 'Edit Project Type',
+            'update_item'       => 'Update Project Type',
+            'add_new_item'      => 'Add New Project Type',
+            'new_item_name'     => 'New Project Type Name',
+            'menu_name'         => 'Project Type',
+        ),
+        'hierarchical'        => true, // Set to true for parent-child relationships
+        'public'              => true,
+        'show_in_rest'        => true, // Enable for Gutenberg
+        'rewrite'             => array( 'slug' => 'project-type' ),
+    );
+    register_taxonomy( 'project_type', array( 'project' ), $args );
+}
+add_action( 'init', 'register_project_type_taxonomy' );
