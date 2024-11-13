@@ -234,9 +234,8 @@ function register_projects_post_type() {
         ),
         'public'              => true,
         'has_archive'         => true,
-        'show_in_rest'        => true, // Enable for Gutenberg
         'supports'            => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-        'taxonomies'          => array( 'project_type' ), // Associate taxonomy
+        'taxonomies'          => array( 'project_type' ), 
         'rewrite'             => array( 'slug' => 'projects' ),
         'show_in_menu'        => true,
         'show_in_admin_bar'   => true,

@@ -1,11 +1,10 @@
 <?php
 /**
  * Plugin Name: Custom IP Redirect
- * Plugin URI: https://yourwebsite.com
+
  * Description: Redirect users based on their IP address if it starts with 77.29.
  * Version: 1.0
- * Author: Your Name
- * Author URI: https://yourwebsite.com
+ * Author: Kinza
  */
 
 
