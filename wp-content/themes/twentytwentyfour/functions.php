@@ -271,3 +271,20 @@ function register_project_type_taxonomy() {
     register_taxonomy( 'project_type', array( 'project' ), $args );
 }
 add_action( 'init', 'register_project_type_taxonomy' );
+
+// Archive Page custom post type
+
+function create_projects_post_type() {
+    $args = array(
+        'labels' => array(
+            'name' => 'Projects',
+            'singular_name' => 'Project',
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'projects'),
+        'supports' => array('title', 'editor', 'thumbnail'),
+    );
+    register_post_type('project', $args);
+}
+add_action('init', 'create_projects_post_type');
